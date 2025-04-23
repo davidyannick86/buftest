@@ -52,7 +52,7 @@ func main() {
 			log.Fatalf("failed to listen: %v", err)
 		}
 
-		log.Printf("HTTP server listening at %v", listener.Addr())
+		log.Printf("Gateway server listening at %v", listener.Addr())
 		if err := http.Serve(listener, mux); err != nil {
 			log.Fatalf("failed to serve: %v", err)
 		}
@@ -67,7 +67,7 @@ func main() {
 		log.Fatalf("failed to listen: %v", err)
 	}
 
-	log.Printf("server listening at %v", listener.Addr())
+	log.Printf("GRPC server listening at %v", listener.Addr())
 
 	reflection.Register(grpcServer)
 
