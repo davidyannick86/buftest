@@ -4,7 +4,7 @@
 // 	protoc        (unknown)
 // source: hello/v1/hello.proto
 
-package v1
+package proto_hello
 
 import (
 	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
@@ -133,9 +133,9 @@ const file_hello_v1_hello_proto_rawDesc = "" +
 	"\x10SayHelloResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage2\xa7\x01\n" +
 	"\fHelloService\x12\x96\x01\n" +
-	"\bSayHello\x12\x19.hello.v1.SayHelloRequest\x1a\x1a.hello.v1.SayHelloResponse\"S\x92A<\x12\x14Say hello to someone\x1a$Use this API to say hello to someone\x82\xd3\xe4\x93\x02\x0e:\x01*\"\t/v1/helloB\x99\x01\n" +
+	"\bSayHello\x12\x19.hello.v1.SayHelloRequest\x1a\x1a.hello.v1.SayHelloResponse\"S\x92A<\x12\x14Say hello to someone\x1a$Use this API to say hello to someone\x82\xd3\xe4\x93\x02\x0e:\x01*\"\t/v1/helloB\xa5\x01\n" +
 	"\fcom.hello.v1B\n" +
-	"HelloProtoP\x01Z<github.com/davidyannick86/bufbuild/testbuf/protogen/hello/v1\xa2\x02\x03HXX\xaa\x02\bHello.V1\xca\x02\bHello\\V1\xe2\x02\x14Hello\\V1\\GPBMetadata\xea\x02\tHello::V1b\x06proto3"
+	"HelloProtoP\x01ZHgithub.com/davidyannick86/bufbuild/testbuf/protogen/hello/v1;proto_hello\xa2\x02\x03HXX\xaa\x02\bHello.V1\xca\x02\bHello\\V1\xe2\x02\x14Hello\\V1\\GPBMetadata\xea\x02\tHello::V1b\x06proto3"
 
 var (
 	file_hello_v1_hello_proto_rawDescOnce sync.Once

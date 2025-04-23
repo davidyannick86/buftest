@@ -8,7 +8,7 @@ import (
 	"net/http"
 
 	valid "github.com/bufbuild/protovalidate-go"
-	v1 "github.com/davidyannick86/bufbuild/testbuf/protogen/hello/v1"
+	proto_hello "github.com/davidyannick86/bufbuild/testbuf/protogen/hello/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 
 	"google.golang.org/grpc"
@@ -16,10 +16,10 @@ import (
 )
 
 type server struct {
-	v1.UnimplementedHelloServiceServer
+	proto_hello.UnimplementedHelloServiceServer
 }
 
-func (s *server) SayHello(ctx context.Context, req *v1.SayHelloRequest) (*v1.SayHelloResponse, error) {
+func (s *server) SayHello(ctx context.Context, req *proto_hello.SayHelloRequest) (*proto_hello.SayHelloResponse, error) {
 	validator, err := valid.New()
 	if err != nil {
 		return nil, fmt.Errorf("failed to create validator: %v", err)
@@ -29,7 +29,7 @@ func (s *server) SayHello(ctx context.Context, req *v1.SayHelloRequest) (*v1.Say
 		return nil, fmt.Errorf("validation failed: %v", err)
 	}
 
-	response := &v1.SayHelloResponse{
+	response := &proto_hello.SayHelloResponse{
 		Message: fmt.Sprintf("Hello, %s!", req.Name),
 	}
 	return response, nil
@@ -39,7 +39,7 @@ func main() {
 
 	go func() {
 		grpcMux := runtime.NewServeMux()
-		err := v1.RegisterHelloServiceHandlerServer(context.Background(), grpcMux, &server{})
+		err := proto_hello.RegisterHelloServiceHandlerServer(context.Background(), grpcMux, &server{})
 		if err != nil {
 			log.Fatalf("failed to register handler: %v", err)
 		}
@@ -59,7 +59,7 @@ func main() {
 	}()
 
 	grpcServer := grpc.NewServer()
-	v1.RegisterHelloServiceServer(grpcServer, &server{})
+	proto_hello.RegisterHelloServiceServer(grpcServer, &server{})
 
 	listener, err := net.Listen("tcp", ":50051")
 	if err != nil {
