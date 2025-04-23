@@ -23,3 +23,9 @@ plugins:
   opt:
   - paths=source_relative
   - generate_unbound_methods=true
+
+- remote: buf.build/grpc-ecosystem/openapiv2:v2.26.3
+  out: ./docs/swagger
+  opt:
+  - allow_merge=true
+  - merge_file_name=simple_bank
