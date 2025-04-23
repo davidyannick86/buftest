@@ -10,6 +10,8 @@ tasks:
     desc: Generate protobuf code
     cmds:
     - rm -rf protogen
+    - rm -rf docs
+    - buf dep update
     - buf generate
     - go mod tidy
 
