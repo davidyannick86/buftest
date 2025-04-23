@@ -29,7 +29,6 @@ func (s *server) SayHello(ctx context.Context, req *v1.SayHelloRequest) (*v1.Say
 		return nil, fmt.Errorf("validation failed: %v", err)
 	}
 
-	log.Printf("Received request: %v", req)
 	response := &v1.SayHelloResponse{
 		Message: fmt.Sprintf("Hello, %s!", req.Name),
 	}

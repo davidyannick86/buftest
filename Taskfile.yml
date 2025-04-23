@@ -11,3 +11,10 @@ tasks:
     - go mod tidy
 
     silent: true
+
+  server:
+    desc: Run the server
+    cmds:
+    - go run .
+    - echo "Server is running..."
+    silent: true

@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "hello/service.proto",
+    "title": "hello/hello.proto",
     "version": "version not set"
   },
   "tags": [
