@@ -1,7 +1,7 @@
 ### Say hello via HTTP
 POST http://localhost:8080/v1/hello
 {
-    "name": "John Doe"
+    "name": "JohnDoe"
 }
 {{
     test.status(200)
@@ -11,7 +11,7 @@ POST http://localhost:8080/v1/hello
 ### Say Hello via gRPC
 GRPC grpc://localhost:50051/v1.HelloService/SayHello
 {
-    "name": "John Doe"
+    "name": "JohnDoe"
 }
 {{
     test.status(0)

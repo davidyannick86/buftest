@@ -6,6 +6,7 @@ require (
 	buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go v1.36.6-20250423154025-ec0af4932e5e.1
 	github.com/bufbuild/protovalidate-go v0.9.3
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.26.3
+	github.com/rs/zerolog v1.34.0
 	google.golang.org/genproto v0.0.0-20250422160041-2d3770c4ea7f
 	google.golang.org/genproto/googleapis/api v0.0.0-20250422160041-2d3770c4ea7f
 	google.golang.org/grpc v1.72.0
@@ -27,6 +28,8 @@ require (
 	github.com/golang/protobuf v1.5.4 // indirect
 	github.com/google/cel-go v0.25.0 // indirect
 	github.com/jhump/protoreflect v1.17.0 // indirect
+	github.com/mattn/go-colorable v0.1.14 // indirect
+	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/pkg/browser v0.0.0-20240102092130-5ac0b6a4141c // indirect
 	github.com/planetscale/vtprotobuf v0.6.1-0.20240319094008-0393e58bdf10 // indirect
 	github.com/spiffe/go-spiffe/v2 v2.5.0 // indirect
