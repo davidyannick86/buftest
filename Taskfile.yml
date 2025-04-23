@@ -1,0 +1,16 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  GREETING: Hello, World!
+
+tasks:
+  protogen:
+    desc: Generate protobuf code
+    cmds:
+    - rm -rf protogen
+    - buf generate
+    - go mod tidy
+
+    silent: true

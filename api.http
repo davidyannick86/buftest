@@ -1,0 +1,18 @@
+### Say hello via HTTP
+POST http://localhost:8080/v1/hello
+{
+    "name": "John Doe"
+}
+{{
+    test.status(200)
+}}
+
+
+### Say Hello via gRPC
+GRPC grpc://localhost:50051/v1.HelloService/SayHello
+{
+    "name": "John Doe"
+}
+{{
+    test.status(0)
+}}

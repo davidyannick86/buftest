@@ -1,0 +1,25 @@
+version: v2
+
+managed:
+  enabled: true
+  disable:
+  - file_option: go_package
+    module: buf.build/bufbuild/protovalidate-go
+
+plugins:
+
+- remote: buf.build/grpc/go:v1.5.1
+  out: ./protogen
+  opt:
+  - paths=source_relative
+
+- remote: buf.build/protocolbuffers/go:v1.36.6
+  out: ./protogen
+  opt:
+  - paths=source_relative
+
+- remote: buf.build/grpc-ecosystem/gateway:v2.26.3
+  out: ./protogen
+  opt:
+  - paths=source_relative
+  - generate_unbound_methods=true
