@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.6
 // 	protoc        (unknown)
-// source: hello/hello.proto
+// source: hello/v1/hello.proto
 
 package v1
 
@@ -35,7 +35,7 @@ type SayHelloRequest struct {
 
 func (x *SayHelloRequest) Reset() {
 	*x = SayHelloRequest{}
-	mi := &file_hello_hello_proto_msgTypes[0]
+	mi := &file_hello_v1_hello_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -47,7 +47,7 @@ func (x *SayHelloRequest) String() string {
 func (*SayHelloRequest) ProtoMessage() {}
 
 func (x *SayHelloRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_hello_hello_proto_msgTypes[0]
+	mi := &file_hello_v1_hello_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -60,7 +60,7 @@ func (x *SayHelloRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SayHelloRequest.ProtoReflect.Descriptor instead.
 func (*SayHelloRequest) Descriptor() ([]byte, []int) {
-	return file_hello_hello_proto_rawDescGZIP(), []int{0}
+	return file_hello_v1_hello_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *SayHelloRequest) GetName() string {
@@ -86,7 +86,7 @@ type SayHelloResponse struct {
 
 func (x *SayHelloResponse) Reset() {
 	*x = SayHelloResponse{}
-	mi := &file_hello_hello_proto_msgTypes[1]
+	mi := &file_hello_v1_hello_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -98,7 +98,7 @@ func (x *SayHelloResponse) String() string {
 func (*SayHelloResponse) ProtoMessage() {}
 
 func (x *SayHelloResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_hello_hello_proto_msgTypes[1]
+	mi := &file_hello_v1_hello_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -111,7 +111,7 @@ func (x *SayHelloResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SayHelloResponse.ProtoReflect.Descriptor instead.
 func (*SayHelloResponse) Descriptor() ([]byte, []int) {
-	return file_hello_hello_proto_rawDescGZIP(), []int{1}
+	return file_hello_v1_hello_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *SayHelloResponse) GetMessage() string {
@@ -121,11 +121,11 @@ func (x *SayHelloResponse) GetMessage() string {
 	return ""
 }
 
-var File_hello_hello_proto protoreflect.FileDescriptor
+var File_hello_v1_hello_proto protoreflect.FileDescriptor
 
-const file_hello_hello_proto_rawDesc = "" +
+const file_hello_v1_hello_proto_rawDesc = "" +
 	"\n" +
-	"\x11hello/hello.proto\x12\bhello.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x16google/type/date.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"W\n" +
+	"\x14hello/v1/hello.proto\x12\bhello.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x16google/type/date.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"W\n" +
 	"\x0fSayHelloRequest\x12\x1d\n" +
 	"\x04name\x18\x01 \x01(\tB\t\xbaH\x06r\x04\x10\x02\x18\n" +
 	"R\x04name\x12%\n" +
@@ -133,29 +133,29 @@ const file_hello_hello_proto_rawDesc = "" +
 	"\x10SayHelloResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage2\xa7\x01\n" +
 	"\fHelloService\x12\x96\x01\n" +
-	"\bSayHello\x12\x19.hello.v1.SayHelloRequest\x1a\x1a.hello.v1.SayHelloResponse\"S\x92A<\x12\x14Say hello to someone\x1a$Use this API to say hello to someone\x82\xd3\xe4\x93\x02\x0e:\x01*\"\t/v1/helloB\x90\x01\n" +
+	"\bSayHello\x12\x19.hello.v1.SayHelloRequest\x1a\x1a.hello.v1.SayHelloResponse\"S\x92A<\x12\x14Say hello to someone\x1a$Use this API to say hello to someone\x82\xd3\xe4\x93\x02\x0e:\x01*\"\t/v1/helloB\x99\x01\n" +
 	"\fcom.hello.v1B\n" +
-	"HelloProtoP\x01Z3github.com/davidyannick86/bufbuild/testbuf/hello/v1\xa2\x02\x03HXX\xaa\x02\bHello.V1\xca\x02\bHello\\V1\xe2\x02\x14Hello\\V1\\GPBMetadata\xea\x02\tHello::V1b\x06proto3"
+	"HelloProtoP\x01Z<github.com/davidyannick86/bufbuild/testbuf/protogen/hello/v1\xa2\x02\x03HXX\xaa\x02\bHello.V1\xca\x02\bHello\\V1\xe2\x02\x14Hello\\V1\\GPBMetadata\xea\x02\tHello::V1b\x06proto3"
 
 var (
-	file_hello_hello_proto_rawDescOnce sync.Once
-	file_hello_hello_proto_rawDescData []byte
+	file_hello_v1_hello_proto_rawDescOnce sync.Once
+	file_hello_v1_hello_proto_rawDescData []byte
 )
 
-func file_hello_hello_proto_rawDescGZIP() []byte {
-	file_hello_hello_proto_rawDescOnce.Do(func() {
-		file_hello_hello_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_hello_hello_proto_rawDesc), len(file_hello_hello_proto_rawDesc)))
+func file_hello_v1_hello_proto_rawDescGZIP() []byte {
+	file_hello_v1_hello_proto_rawDescOnce.Do(func() {
+		file_hello_v1_hello_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_hello_v1_hello_proto_rawDesc), len(file_hello_v1_hello_proto_rawDesc)))
 	})
-	return file_hello_hello_proto_rawDescData
+	return file_hello_v1_hello_proto_rawDescData
 }
 
-var file_hello_hello_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
-var file_hello_hello_proto_goTypes = []any{
+var file_hello_v1_hello_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_hello_v1_hello_proto_goTypes = []any{
 	(*SayHelloRequest)(nil),  // 0: hello.v1.SayHelloRequest
 	(*SayHelloResponse)(nil), // 1: hello.v1.SayHelloResponse
 	(*date.Date)(nil),        // 2: google.type.Date
 }
-var file_hello_hello_proto_depIdxs = []int32{
+var file_hello_v1_hello_proto_depIdxs = []int32{
 	2, // 0: hello.v1.SayHelloRequest.date:type_name -> google.type.Date
 	0, // 1: hello.v1.HelloService.SayHello:input_type -> hello.v1.SayHelloRequest
 	1, // 2: hello.v1.HelloService.SayHello:output_type -> hello.v1.SayHelloResponse
@@ -166,26 +166,26 @@ var file_hello_hello_proto_depIdxs = []int32{
 	0, // [0:1] is the sub-list for field type_name
 }
 
-func init() { file_hello_hello_proto_init() }
-func file_hello_hello_proto_init() {
-	if File_hello_hello_proto != nil {
+func init() { file_hello_v1_hello_proto_init() }
+func file_hello_v1_hello_proto_init() {
+	if File_hello_v1_hello_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_hello_hello_proto_rawDesc), len(file_hello_hello_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_hello_v1_hello_proto_rawDesc), len(file_hello_v1_hello_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_hello_hello_proto_goTypes,
-		DependencyIndexes: file_hello_hello_proto_depIdxs,
-		MessageInfos:      file_hello_hello_proto_msgTypes,
+		GoTypes:           file_hello_v1_hello_proto_goTypes,
+		DependencyIndexes: file_hello_v1_hello_proto_depIdxs,
+		MessageInfos:      file_hello_v1_hello_proto_msgTypes,
 	}.Build()
-	File_hello_hello_proto = out.File
-	file_hello_hello_proto_goTypes = nil
-	file_hello_hello_proto_depIdxs = nil
+	File_hello_v1_hello_proto = out.File
+	file_hello_v1_hello_proto_goTypes = nil
+	file_hello_v1_hello_proto_depIdxs = nil
 }

@@ -8,7 +8,7 @@ import (
 	"net/http"
 
 	valid "github.com/bufbuild/protovalidate-go"
-	v1 "github.com/davidyannick86/bufbuild/testbuf/protogen/hello"
+	v1 "github.com/davidyannick86/bufbuild/testbuf/protogen/hello/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 
 	"google.golang.org/grpc"
