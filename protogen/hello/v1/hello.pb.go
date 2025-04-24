@@ -133,9 +133,9 @@ var File_hello_v1_hello_proto protoreflect.FileDescriptor
 
 const file_hello_v1_hello_proto_rawDesc = "" +
 	"\n" +
-	"\x14hello/v1/hello.proto\x12\bhello.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x16google/type/date.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\x85\x01\n" +
-	"\x0fSayHelloRequest\x12.\n" +
-	"\x04name\x18\x01 \x01(\tB\x1a\xbaH\x17\xc8\x01\x01r\x12\x10\x02\x18\n" +
+	"\x14hello/v1/hello.proto\x12\bhello.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x16google/type/date.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\x82\x01\n" +
+	"\x0fSayHelloRequest\x12+\n" +
+	"\x04name\x18\x01 \x01(\tB\x17\xbaH\x14r\x12\x10\x02\x18\n" +
 	"2\f^[a-zA-Z ]+$R\x04name\x12\x1b\n" +
 	"\x03age\x18\x02 \x01(\x05B\t\xbaH\x06\x1a\x04\x10P \x14R\x03age\x12%\n" +
 	"\x04date\x18\x03 \x01(\v2\x11.google.type.DateR\x04date\",\n" +
