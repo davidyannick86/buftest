@@ -16,6 +16,49 @@
     "application/json"
   ],
   "paths": {
+    "/v1/greetmanytimes": {
+      "post": {
+        "summary": "Greet many times",
+        "description": "Use this API to greet many times",
+        "operationId": "HelloService_GreetManyTimes",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1GreetManyTimesResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of v1GreetManyTimesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1GreetManyTimesRequest"
+            }
+          }
+        ],
+        "tags": [
+          "HelloService"
+        ]
+      }
+    },
     "/v1/hello": {
       "post": {
         "summary": "Say hello to someone",
@@ -42,6 +85,41 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/v1SayHelloRequest"
+            }
+          }
+        ],
+        "tags": [
+          "HelloService"
+        ]
+      }
+    },
+    "/v1/longgreet": {
+      "post": {
+        "summary": "Long greet",
+        "description": "Use this API to long greet",
+        "operationId": "HelloService_LongGreet",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1LongGreetResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": " (streaming inputs)",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1LongGreetRequest"
             }
           }
         ],
@@ -101,6 +179,38 @@
       },
       "description": "* A full date, with non-zero year, month, and day values\n* A month and day value, with a zero year, such as an anniversary\n* A year on its own, with zero month and day values\n* A year and month value, with a zero day, such as a credit card expiration\ndate\n\nRelated types are [google.type.TimeOfDay][google.type.TimeOfDay] and\n`google.protobuf.Timestamp`.",
       "title": "Represents a whole or partial calendar date, such as a birthday. The time of\nday and time zone are either specified elsewhere or are insignificant. The\ndate is relative to the Gregorian Calendar. This can represent one of the\nfollowing:"
+    },
+    "v1GreetManyTimesRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GreetManyTimesResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "v1LongGreetRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "v1LongGreetResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
     },
     "v1SayHelloRequest": {
       "type": "object",

@@ -129,6 +129,182 @@ func (x *SayHelloResponse) GetMessage() string {
 	return ""
 }
 
+type GreetManyTimesRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GreetManyTimesRequest) Reset() {
+	*x = GreetManyTimesRequest{}
+	mi := &file_hello_v1_hello_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GreetManyTimesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GreetManyTimesRequest) ProtoMessage() {}
+
+func (x *GreetManyTimesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_hello_v1_hello_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GreetManyTimesRequest.ProtoReflect.Descriptor instead.
+func (*GreetManyTimesRequest) Descriptor() ([]byte, []int) {
+	return file_hello_v1_hello_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *GreetManyTimesRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+type GreetManyTimesResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GreetManyTimesResponse) Reset() {
+	*x = GreetManyTimesResponse{}
+	mi := &file_hello_v1_hello_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GreetManyTimesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GreetManyTimesResponse) ProtoMessage() {}
+
+func (x *GreetManyTimesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_hello_v1_hello_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GreetManyTimesResponse.ProtoReflect.Descriptor instead.
+func (*GreetManyTimesResponse) Descriptor() ([]byte, []int) {
+	return file_hello_v1_hello_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *GreetManyTimesResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+type LongGreetRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *LongGreetRequest) Reset() {
+	*x = LongGreetRequest{}
+	mi := &file_hello_v1_hello_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LongGreetRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LongGreetRequest) ProtoMessage() {}
+
+func (x *LongGreetRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_hello_v1_hello_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LongGreetRequest.ProtoReflect.Descriptor instead.
+func (*LongGreetRequest) Descriptor() ([]byte, []int) {
+	return file_hello_v1_hello_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *LongGreetRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+type LongGreetResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *LongGreetResponse) Reset() {
+	*x = LongGreetResponse{}
+	mi := &file_hello_v1_hello_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LongGreetResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LongGreetResponse) ProtoMessage() {}
+
+func (x *LongGreetResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_hello_v1_hello_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LongGreetResponse.ProtoReflect.Descriptor instead.
+func (*LongGreetResponse) Descriptor() ([]byte, []int) {
+	return file_hello_v1_hello_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *LongGreetResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
 var File_hello_v1_hello_proto protoreflect.FileDescriptor
 
 const file_hello_v1_hello_proto_rawDesc = "" +
@@ -140,9 +316,22 @@ const file_hello_v1_hello_proto_rawDesc = "" +
 	"\x03age\x18\x02 \x01(\x05B\t\xbaH\x06\x1a\x04\x10P \x14R\x03age\x12%\n" +
 	"\x04date\x18\x03 \x01(\v2\x11.google.type.DateR\x04date\",\n" +
 	"\x10SayHelloResponse\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage2\xa7\x01\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\"D\n" +
+	"\x15GreetManyTimesRequest\x12+\n" +
+	"\x04name\x18\x01 \x01(\tB\x17\xbaH\x14r\x12\x10\x02\x18\n" +
+	"2\f^[a-zA-Z ]+$R\x04name\"2\n" +
+	"\x16GreetManyTimesResponse\x12\x18\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\"?\n" +
+	"\x10LongGreetRequest\x12+\n" +
+	"\x04name\x18\x01 \x01(\tB\x17\xbaH\x14r\x12\x10\x02\x18\n" +
+	"2\f^[a-zA-Z ]+$R\x04name\"-\n" +
+	"\x11LongGreetResponse\x12\x18\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage2\xe3\x03\n" +
 	"\fHelloService\x12\x96\x01\n" +
-	"\bSayHello\x12\x19.hello.v1.SayHelloRequest\x1a\x1a.hello.v1.SayHelloResponse\"S\x92A<\x12\x14Say hello to someone\x1a$Use this API to say hello to someone\x82\xd3\xe4\x93\x02\x0e:\x01*\"\t/v1/helloB\xa5\x01\n" +
+	"\bSayHello\x12\x19.hello.v1.SayHelloRequest\x1a\x1a.hello.v1.SayHelloResponse\"S\x92A<\x12\x14Say hello to someone\x1a$Use this API to say hello to someone\x82\xd3\xe4\x93\x02\x0e:\x01*\"\t/v1/hello\x12\xab\x01\n" +
+	"\x0eGreetManyTimes\x12\x1f.hello.v1.GreetManyTimesRequest\x1a .hello.v1.GreetManyTimesResponse\"T\x92A4\x12\x10Greet many times\x1a Use this API to greet many times\x82\xd3\xe4\x93\x02\x17:\x01*\"\x12/v1/greetmanytimes0\x01\x12\x8b\x01\n" +
+	"\tLongGreet\x12\x1a.hello.v1.LongGreetRequest\x1a\x1b.hello.v1.LongGreetResponse\"C\x92A(\x12\n" +
+	"Long greet\x1a\x1aUse this API to long greet\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/v1/longgreet(\x01B\xa5\x01\n" +
 	"\fcom.hello.v1B\n" +
 	"HelloProtoP\x01ZHgithub.com/davidyannick86/bufbuild/testbuf/protogen/hello/v1;proto_hello\xa2\x02\x03HXX\xaa\x02\bHello.V1\xca\x02\bHello\\V1\xe2\x02\x14Hello\\V1\\GPBMetadata\xea\x02\tHello::V1b\x06proto3"
 
@@ -158,18 +347,26 @@ func file_hello_v1_hello_proto_rawDescGZIP() []byte {
 	return file_hello_v1_hello_proto_rawDescData
 }
 
-var file_hello_v1_hello_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_hello_v1_hello_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_hello_v1_hello_proto_goTypes = []any{
-	(*SayHelloRequest)(nil),  // 0: hello.v1.SayHelloRequest
-	(*SayHelloResponse)(nil), // 1: hello.v1.SayHelloResponse
-	(*date.Date)(nil),        // 2: google.type.Date
+	(*SayHelloRequest)(nil),        // 0: hello.v1.SayHelloRequest
+	(*SayHelloResponse)(nil),       // 1: hello.v1.SayHelloResponse
+	(*GreetManyTimesRequest)(nil),  // 2: hello.v1.GreetManyTimesRequest
+	(*GreetManyTimesResponse)(nil), // 3: hello.v1.GreetManyTimesResponse
+	(*LongGreetRequest)(nil),       // 4: hello.v1.LongGreetRequest
+	(*LongGreetResponse)(nil),      // 5: hello.v1.LongGreetResponse
+	(*date.Date)(nil),              // 6: google.type.Date
 }
 var file_hello_v1_hello_proto_depIdxs = []int32{
-	2, // 0: hello.v1.SayHelloRequest.date:type_name -> google.type.Date
+	6, // 0: hello.v1.SayHelloRequest.date:type_name -> google.type.Date
 	0, // 1: hello.v1.HelloService.SayHello:input_type -> hello.v1.SayHelloRequest
-	1, // 2: hello.v1.HelloService.SayHello:output_type -> hello.v1.SayHelloResponse
-	2, // [2:3] is the sub-list for method output_type
-	1, // [1:2] is the sub-list for method input_type
+	2, // 2: hello.v1.HelloService.GreetManyTimes:input_type -> hello.v1.GreetManyTimesRequest
+	4, // 3: hello.v1.HelloService.LongGreet:input_type -> hello.v1.LongGreetRequest
+	1, // 4: hello.v1.HelloService.SayHello:output_type -> hello.v1.SayHelloResponse
+	3, // 5: hello.v1.HelloService.GreetManyTimes:output_type -> hello.v1.GreetManyTimesResponse
+	5, // 6: hello.v1.HelloService.LongGreet:output_type -> hello.v1.LongGreetResponse
+	4, // [4:7] is the sub-list for method output_type
+	1, // [1:4] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
 	1, // [1:1] is the sub-list for extension extendee
 	0, // [0:1] is the sub-list for field type_name
@@ -186,7 +383,7 @@ func file_hello_v1_hello_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_hello_v1_hello_proto_rawDesc), len(file_hello_v1_hello_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

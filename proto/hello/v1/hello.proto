@@ -26,6 +26,32 @@ message SayHelloResponse {
   string message = 1;
 }
 
+message GreetManyTimesRequest {
+  string name = 1 [
+    json_name = "name",
+    (buf.validate.field).string.min_len = 2,
+    (buf.validate.field).string.max_len = 10,
+    (buf.validate.field).string.pattern = "^[a-zA-Z ]+$"
+  ];
+}
+
+message GreetManyTimesResponse {
+  string message = 1;
+}
+
+message LongGreetRequest {
+  string name = 1 [
+    json_name = "name",
+    (buf.validate.field).string.min_len = 2,
+    (buf.validate.field).string.max_len = 10,
+    (buf.validate.field).string.pattern = "^[a-zA-Z ]+$"
+  ];
+}
+
+message LongGreetResponse {
+  string message = 1;
+}
+
 service HelloService {
   rpc SayHello(SayHelloRequest) returns (SayHelloResponse) {
     option (google.api.http) = {
@@ -35,6 +61,29 @@ service HelloService {
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       description: "Use this API to say hello to someone"
       summary: "Say hello to someone"
+    };
+  }
+  // Server streaming
+  rpc GreetManyTimes(GreetManyTimesRequest) returns (stream GreetManyTimesResponse) {
+    option (google.api.http) = {
+      post: "/v1/greetmanytimes"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Use this API to greet many times"
+      summary: "Greet many times"
+    };
+  }
+
+  // Client streaming
+  rpc LongGreet(stream LongGreetRequest) returns (LongGreetResponse) {
+    option (google.api.http) = {
+      post: "/v1/longgreet"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Use this API to long greet"
+      summary: "Long greet"
     };
   }
 }

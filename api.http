@@ -57,3 +57,40 @@ GRPC grpc://localhost:50051/v1.HelloService/SayHello
 {{
     test.status(2)
 }}
+
+
+### Greet many times via gRPC 
+GRPC grpc://localhost:50051/v1.HelloService/GreetManyTimes
+{
+    "name": "John Doe"
+}
+{{
+    test.status(0)
+}}
+
+### Long Greet via gRPC
+GRPC grpc://localhost:50051/v1.HelloService/LongGreet
+{
+    "name": "John Doe"
+}
+{{@streaming
+    async function writeStream() {
+        await sleep(1000);
+        await $requestClient.send({
+            name : 'John Doe'
+        });
+        await sleep(1000);
+        await $requestClient.send({
+            name : 'Jane Doe'
+        });
+        await sleep(1000);
+        await $requestClient.send({
+            name : 'George Doe'
+        });
+    }
+    exports.waitPromise = writeStream();
+}}
+{{
+    test.status(0)
+}}
+
