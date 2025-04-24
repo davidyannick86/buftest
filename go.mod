@@ -7,6 +7,7 @@ require (
 	github.com/bufbuild/protovalidate-go v0.9.3
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.26.3
 	github.com/rs/zerolog v1.34.0
+	golang.org/x/sync v0.13.0
 	google.golang.org/genproto v0.0.0-20250422160041-2d3770c4ea7f
 	google.golang.org/genproto/googleapis/api v0.0.0-20250422160041-2d3770c4ea7f
 	google.golang.org/grpc v1.72.0
@@ -38,7 +39,6 @@ require (
 	golang.org/x/exp v0.0.0-20250408133849-7e4ce0ab07d0 // indirect
 	golang.org/x/net v0.39.0 // indirect
 	golang.org/x/oauth2 v0.29.0 // indirect
-	golang.org/x/sync v0.13.0 // indirect
 	golang.org/x/sys v0.32.0 // indirect
 	golang.org/x/term v0.31.0 // indirect
 	golang.org/x/text v0.24.0 // indirect

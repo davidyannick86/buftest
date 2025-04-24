@@ -108,6 +108,10 @@
         "name": {
           "type": "string"
         },
+        "age": {
+          "type": "integer",
+          "format": "int32"
+        },
         "date": {
           "$ref": "#/definitions/typeDate"
         }

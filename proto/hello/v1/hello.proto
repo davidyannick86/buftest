@@ -13,9 +13,14 @@ message SayHelloRequest {
   string name = 1 [
     (buf.validate.field).string.min_len = 2,
     (buf.validate.field).string.max_len = 10,
-    (buf.validate.field).string.pattern = "^[a-zA-Z]+$"
+    (buf.validate.field).string.pattern = "^[a-zA-Z ]+$",
+    (buf.validate.field).required = true
   ];
-  google.type.Date date = 2;
+  int32 age = 2 [
+    (buf.validate.field).int32.gt = 20,
+    (buf.validate.field).int32.lt = 80
+  ];
+  google.type.Date date = 3;
 }
 
 message SayHelloResponse {

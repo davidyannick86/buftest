@@ -1,7 +1,8 @@
 ### Say hello via HTTP
 POST http://localhost:8080/v1/hello
 {
-    "name": "JohnDoe"
+    "name": "John Doe",
+    "age": 55
 }
 {{
     test.status(200)
@@ -11,8 +12,48 @@ POST http://localhost:8080/v1/hello
 ### Say Hello via gRPC
 GRPC grpc://localhost:50051/v1.HelloService/SayHello
 {
-    "name": "JohnDoe"
+    "name": "John Doe",
+    "age": 55
 }
 {{
     test.status(0)
+}}
+
+### Say hello via gRPC with valid age
+GRPC grpc://localhost:50051/v1.HelloService/SayHello
+{
+    "name": "John Doe",
+    "age": 30
+}
+{{
+    test.status(0)
+}}
+
+### Say hello via gRPC with invalid age
+GRPC grpc://localhost:50051/v1.HelloService/SayHello
+{
+    "name": "John Doe",
+    "age": -5
+}
+{{
+    test.status(2)
+}}
+
+### Say hello via gRPC with invalid name
+GRPC grpc://localhost:50051/v1.HelloService/SayHello
+{
+    "name": "",
+    "age": 30
+}
+{{
+    test.status(2)
+}}
+
+### Say hello via gRPC with no name
+GRPC grpc://localhost:50051/v1.HelloService/SayHello
+{
+    "age": 30
+}
+{{
+    test.status(2)
 }}
