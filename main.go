@@ -17,7 +17,6 @@ import (
 	"github.com/davidyannick86/bufbuild/testbuf/interceptor"
 	proto_hello "github.com/davidyannick86/bufbuild/testbuf/protogen/hello/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
-	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"golang.org/x/sync/errgroup"
 
@@ -94,7 +93,7 @@ var interruptSignals = []os.Signal{
 
 func main() {
 
-	log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stderr})
+	//log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stderr})
 
 	ctx, cancel := signal.NotifyContext(
 		context.Background(),

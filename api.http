@@ -70,9 +70,7 @@ GRPC grpc://localhost:50051/v1.HelloService/GreetManyTimes
 
 ### Long Greet via gRPC
 GRPC grpc://localhost:50051/v1.HelloService/LongGreet
-{
-    "name": "John Doe"
-}
+{}
 {{@streaming
     async function writeStream() {
         await sleep(1000);

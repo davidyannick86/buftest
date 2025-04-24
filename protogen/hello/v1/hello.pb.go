@@ -321,10 +321,9 @@ const file_hello_v1_hello_proto_rawDesc = "" +
 	"\x04name\x18\x01 \x01(\tB\x17\xbaH\x14r\x12\x10\x02\x18\n" +
 	"2\f^[a-zA-Z ]+$R\x04name\"2\n" +
 	"\x16GreetManyTimesResponse\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage\"?\n" +
-	"\x10LongGreetRequest\x12+\n" +
-	"\x04name\x18\x01 \x01(\tB\x17\xbaH\x14r\x12\x10\x02\x18\n" +
-	"2\f^[a-zA-Z ]+$R\x04name\"-\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\"&\n" +
+	"\x10LongGreetRequest\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\"-\n" +
 	"\x11LongGreetResponse\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage2\xe3\x03\n" +
 	"\fHelloService\x12\x96\x01\n" +

@@ -40,12 +40,7 @@ message GreetManyTimesResponse {
 }
 
 message LongGreetRequest {
-  string name = 1 [
-    json_name = "name",
-    (buf.validate.field).string.min_len = 2,
-    (buf.validate.field).string.max_len = 10,
-    (buf.validate.field).string.pattern = "^[a-zA-Z ]+$"
-  ];
+  string name = 1;
 }
 
 message LongGreetResponse {
