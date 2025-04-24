@@ -74,7 +74,6 @@ func main() {
 	} else {
 		log.Info().Msg("Server stopped gracefully")
 	}
-
 }
 
 func runHTTOGateway(
@@ -90,7 +89,7 @@ func runHTTOGateway(
 	mux.Handle("/", grpcMux)
 
 	httpServer := &http.Server{
-		Addr:    "0.0.0.0:8080",
+		Addr:    ":8080",
 		Handler: mux,
 	}
 
