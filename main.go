@@ -14,6 +14,7 @@ import (
 	"os"
 
 	valid "github.com/bufbuild/protovalidate-go"
+	"github.com/davidyannick86/bufbuild/testbuf/interceptor"
 	proto_hello "github.com/davidyannick86/bufbuild/testbuf/protogen/hello/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/rs/zerolog"
@@ -29,19 +30,19 @@ type server struct {
 }
 
 func (s *server) SayHello(ctx context.Context, req *proto_hello.SayHelloRequest) (*proto_hello.SayHelloResponse, error) {
-	validator, err := valid.New()
-	if err != nil {
-		return nil, fmt.Errorf("failed to create validator: %v", err)
-	}
+	// validator, err := valid.New()
+	// if err != nil {
+	// 	return nil, fmt.Errorf("failed to create validator: %v", err)
+	// }
 
-	log.Info().Msgf("Received request: %v", req)
+	// log.Info().Msgf("Received request: %v", req)
 
-	if err := validator.Validate(req); err != nil {
-		if ve, ok := err.(*valid.ValidationError); ok {
-			log.Info().Msgf("Validation violations: %v", ve.Error())
-		}
-		return nil, fmt.Errorf("validation failed ➡️  %v", err)
-	}
+	// if err := validator.Validate(req); err != nil {
+	// 	if ve, ok := err.(*valid.ValidationError); ok {
+	// 		log.Info().Msgf("Validation violations: %v", ve.Error())
+	// 	}
+	// 	return nil, fmt.Errorf("validation failed ➡️  %v", err)
+	// }
 
 	response := &proto_hello.SayHelloResponse{
 		Message: fmt.Sprintf("Hello, %s aged : %d!", req.Name, req.GetAge()),
@@ -177,7 +178,9 @@ func runGrpcServer(
 	ctx context.Context,
 	wg *errgroup.Group,
 ) {
-	grpcServer := grpc.NewServer()
+	grpcServer := grpc.NewServer(
+		grpc.UnaryInterceptor(interceptor.UnaryServerInterceptor),
+	)
 	proto_hello.RegisterHelloServiceServer(grpcServer, &server{})
 
 	listener, err := net.Listen("tcp", ":50051")
