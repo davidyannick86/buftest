@@ -12,7 +12,7 @@ import (
 	"os"
 
 	valid "github.com/bufbuild/protovalidate-go"
-	proto_hello "github.com/davidyannick86/bufbuild/testbuf/protogen/hello/v1"
+	protohello "github.com/davidyannick86/bufbuild/testbuf/protogen/hello/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
@@ -23,10 +23,10 @@ import (
 )
 
 type server struct {
-	proto_hello.UnimplementedHelloServiceServer
+	protohello.UnimplementedHelloServiceServer
 }
 
-func (s *server) SayHello(ctx context.Context, req *proto_hello.SayHelloRequest) (*proto_hello.SayHelloResponse, error) {
+func (s *server) SayHello(ctx context.Context, req *protohello.SayHelloRequest) (*protohello.SayHelloResponse, error) {
 	validator, err := valid.New()
 	if err != nil {
 		return nil, fmt.Errorf("failed to create validator: %v", err)
@@ -35,11 +35,14 @@ func (s *server) SayHello(ctx context.Context, req *proto_hello.SayHelloRequest)
 	log.Info().Msgf("Received request: %v", req)
 
 	if err := validator.Validate(req); err != nil {
-		return nil, fmt.Errorf("validation failed: %v", err)
+		if ve, ok := err.(*valid.ValidationError); ok {
+			log.Info().Msgf("Validation violations: %v", ve.Error())
+		}
+		return nil, fmt.Errorf("validation failed ➡️  %v", err)
 	}
 
-	response := &proto_hello.SayHelloResponse{
-		Message: fmt.Sprintf("Hello, %s!", req.Name),
+	response := &protohello.SayHelloResponse{
+		Message: fmt.Sprintf("Hello, %s aged : %d!", req.Name, req.GetAge()),
 	}
 	return response, nil
 }
@@ -66,7 +69,7 @@ func main() {
 	wg, ctx := errgroup.WithContext(ctx)
 
 	runGrpcServer(ctx, wg)
-	runHTTOGateway(ctx, wg)
+	runHTTPGateway(ctx, wg)
 
 	err := wg.Wait()
 	if err != nil {
@@ -76,12 +79,12 @@ func main() {
 	}
 }
 
-func runHTTOGateway(
+func runHTTPGateway(
 	ctx context.Context,
 	wg *errgroup.Group,
 ) {
 	grpcMux := runtime.NewServeMux()
-	err := proto_hello.RegisterHelloServiceHandlerServer(context.Background(), grpcMux, &server{})
+	err := protohello.RegisterHelloServiceHandlerServer(context.Background(), grpcMux, &server{})
 	if err != nil {
 		log.Fatal().Err(err).Msg("failed to register handler")
 	}
@@ -123,7 +126,7 @@ func runGrpcServer(
 	wg *errgroup.Group,
 ) {
 	grpcServer := grpc.NewServer()
-	proto_hello.RegisterHelloServiceServer(grpcServer, &server{})
+	protohello.RegisterHelloServiceServer(grpcServer, &server{})
 
 	listener, err := net.Listen("tcp", ":50051")
 	if err != nil {
