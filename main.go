@@ -30,20 +30,6 @@ type server struct {
 }
 
 func (s *server) SayHello(ctx context.Context, req *proto_hello.SayHelloRequest) (*proto_hello.SayHelloResponse, error) {
-	// validator, err := valid.New()
-	// if err != nil {
-	// 	return nil, fmt.Errorf("failed to create validator: %v", err)
-	// }
-
-	// log.Info().Msgf("Received request: %v", req)
-
-	// if err := validator.Validate(req); err != nil {
-	// 	if ve, ok := err.(*valid.ValidationError); ok {
-	// 		log.Info().Msgf("Validation violations: %v", ve.Error())
-	// 	}
-	// 	return nil, fmt.Errorf("validation failed ➡️  %v", err)
-	// }
-
 	response := &proto_hello.SayHelloResponse{
 		Message: fmt.Sprintf("Hello, %s aged : %d!", req.Name, req.GetAge()),
 	}
@@ -122,7 +108,7 @@ func main() {
 	wg, ctx := errgroup.WithContext(ctx)
 
 	runGrpcServer(ctx, wg)
-	runHTTOGateway(ctx, wg)
+	runHTTPGateway(ctx, wg)
 
 	err := wg.Wait()
 	if err != nil {
@@ -132,7 +118,7 @@ func main() {
 	}
 }
 
-func runHTTOGateway(
+func runHTTPGateway(
 	ctx context.Context,
 	wg *errgroup.Group,
 ) {
