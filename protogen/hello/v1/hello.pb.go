@@ -4,7 +4,7 @@
 // 	protoc        (unknown)
 // source: hello/v1/hello.proto
 
-package proto_hello
+package protohello
 
 import (
 	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
@@ -330,9 +330,9 @@ const file_hello_v1_hello_proto_rawDesc = "" +
 	"\bSayHello\x12\x19.hello.v1.SayHelloRequest\x1a\x1a.hello.v1.SayHelloResponse\"S\x92A<\x12\x14Say hello to someone\x1a$Use this API to say hello to someone\x82\xd3\xe4\x93\x02\x0e:\x01*\"\t/v1/hello\x12\xab\x01\n" +
 	"\x0eGreetManyTimes\x12\x1f.hello.v1.GreetManyTimesRequest\x1a .hello.v1.GreetManyTimesResponse\"T\x92A4\x12\x10Greet many times\x1a Use this API to greet many times\x82\xd3\xe4\x93\x02\x17:\x01*\"\x12/v1/greetmanytimes0\x01\x12\x8b\x01\n" +
 	"\tLongGreet\x12\x1a.hello.v1.LongGreetRequest\x1a\x1b.hello.v1.LongGreetResponse\"C\x92A(\x12\n" +
-	"Long greet\x1a\x1aUse this API to long greet\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/v1/longgreet(\x01B\xa5\x01\n" +
+	"Long greet\x1a\x1aUse this API to long greet\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/v1/longgreet(\x01B\xa4\x01\n" +
 	"\fcom.hello.v1B\n" +
-	"HelloProtoP\x01ZHgithub.com/davidyannick86/bufbuild/testbuf/protogen/hello/v1;proto_hello\xa2\x02\x03HXX\xaa\x02\bHello.V1\xca\x02\bHello\\V1\xe2\x02\x14Hello\\V1\\GPBMetadata\xea\x02\tHello::V1b\x06proto3"
+	"HelloProtoP\x01ZGgithub.com/davidyannick86/bufbuild/testbuf/protogen/hello/v1;protohello\xa2\x02\x03HXX\xaa\x02\bHello.V1\xca\x02\bHello\\V1\xe2\x02\x14Hello\\V1\\GPBMetadata\xea\x02\tHello::V1b\x06proto3"
 
 var (
 	file_hello_v1_hello_proto_rawDescOnce sync.Once

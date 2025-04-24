@@ -15,7 +15,7 @@ import (
 
 	valid "github.com/bufbuild/protovalidate-go"
 	"github.com/davidyannick86/bufbuild/testbuf/interceptor"
-	proto_hello "github.com/davidyannick86/bufbuild/testbuf/protogen/hello/v1"
+	protohello "github.com/davidyannick86/bufbuild/testbuf/protogen/hello/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/rs/zerolog/log"
 	"golang.org/x/sync/errgroup"
@@ -25,17 +25,17 @@ import (
 )
 
 type server struct {
-	proto_hello.UnimplementedHelloServiceServer
+	protohello.UnimplementedHelloServiceServer
 }
 
-func (s *server) SayHello(ctx context.Context, req *proto_hello.SayHelloRequest) (*proto_hello.SayHelloResponse, error) {
-	response := &proto_hello.SayHelloResponse{
+func (s *server) SayHello(ctx context.Context, req *protohello.SayHelloRequest) (*protohello.SayHelloResponse, error) {
+	response := &protohello.SayHelloResponse{
 		Message: fmt.Sprintf("Hello, %s aged : %d!", req.Name, req.GetAge()),
 	}
 	return response, nil
 }
 
-func (s *server) GreetManyTimes(req *proto_hello.GreetManyTimesRequest, stream grpc.ServerStreamingServer[proto_hello.GreetManyTimesResponse]) error {
+func (s *server) GreetManyTimes(req *protohello.GreetManyTimesRequest, stream grpc.ServerStreamingServer[protohello.GreetManyTimesResponse]) error {
 
 	validator, err := valid.New()
 	if err != nil {
@@ -52,7 +52,7 @@ func (s *server) GreetManyTimes(req *proto_hello.GreetManyTimesRequest, stream g
 	name := req.GetName()
 	result := fmt.Sprintf("Hello, %s!", name)
 	for i := 0; i < 10; i++ {
-		response := &proto_hello.GreetManyTimesResponse{
+		response := &protohello.GreetManyTimesResponse{
 			Message: result,
 		}
 		if err := stream.Send(response); err != nil {
@@ -65,14 +65,14 @@ func (s *server) GreetManyTimes(req *proto_hello.GreetManyTimesRequest, stream g
 	return nil
 }
 
-func (s *server) LongGreet(stream grpc.ClientStreamingServer[proto_hello.LongGreetRequest, proto_hello.LongGreetResponse]) error {
+func (s *server) LongGreet(stream grpc.ClientStreamingServer[protohello.LongGreetRequest, protohello.LongGreetResponse]) error {
 	var result string
 	log.Info().Msgf("Received request: %v", stream)
 	for {
 		req, err := stream.Recv()
 		if err != nil {
 			if err == io.EOF {
-				return stream.SendAndClose(&proto_hello.LongGreetResponse{
+				return stream.SendAndClose(&protohello.LongGreetResponse{
 					Message: result,
 				})
 			}
@@ -122,7 +122,7 @@ func runHTTPGateway(
 	wg *errgroup.Group,
 ) {
 	grpcMux := runtime.NewServeMux()
-	err := proto_hello.RegisterHelloServiceHandlerServer(context.Background(), grpcMux, &server{})
+	err := protohello.RegisterHelloServiceHandlerServer(context.Background(), grpcMux, &server{})
 	if err != nil {
 		log.Fatal().Err(err).Msg("failed to register handler")
 	}
@@ -166,7 +166,7 @@ func runGrpcServer(
 	grpcServer := grpc.NewServer(
 		grpc.UnaryInterceptor(interceptor.UnaryServerInterceptor),
 	)
-	proto_hello.RegisterHelloServiceServer(grpcServer, &server{})
+	protohello.RegisterHelloServiceServer(grpcServer, &server{})
 
 	listener, err := net.Listen("tcp", ":50051")
 	if err != nil {

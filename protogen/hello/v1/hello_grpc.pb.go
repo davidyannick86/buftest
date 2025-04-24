@@ -4,7 +4,7 @@
 // - protoc             (unknown)
 // source: hello/v1/hello.proto
 
-package proto_hello
+package protohello
 
 import (
 	context "context"
