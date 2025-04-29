@@ -18,3 +18,9 @@ tasks:
     - go run .
     - echo "Server is running..."
     silent: true
+
+  lint:
+    desc: Run linters
+    cmds:
+    - golangci-lint run ./...
+    silent: true

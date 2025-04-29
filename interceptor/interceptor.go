@@ -2,6 +2,7 @@ package interceptor
 
 import (
 	"context"
+	"errors"
 	"fmt"
 
 	"github.com/rs/zerolog/log"
@@ -12,7 +13,7 @@ import (
 	"google.golang.org/protobuf/proto"
 )
 
-// initialize validator once at startup
+// initialize validator once at startup.
 var validator = func() valid.Validator {
 	v, err := valid.New()
 	if err != nil {
@@ -21,15 +22,20 @@ var validator = func() valid.Validator {
 	return v
 }()
 
-func UnaryServerInterceptor(ctx context.Context, req any, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (any, error) {
+// UnaryServerInterceptor est un intercepteur gRPC unary qui retourne une réponse générique.
+//
+//nolint:ireturn // required by gRPC handler signature
+func UnaryServerInterceptor(ctx context.Context, req interface{}, _ *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error) {
 	if pm, ok := req.(proto.Message); ok {
 		if err := validator.Validate(pm); err != nil {
-			if ve, ok := err.(*valid.ValidationError); ok {
+			var ve *valid.ValidationError
+			if errors.As(err, &ve) {
 				log.Info().Msgf("Validation violations: %v", ve.Error())
 			}
 			return nil, fmt.Errorf("validation failed: %w", err)
 		}
 	}
+
 	log.Info().Msgf("Received request: %v", req)
 	return handler(ctx, req)
 }

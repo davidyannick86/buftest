@@ -5,18 +5,18 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"os/signal"
-	"syscall"
-	"time"
-
 	"net"
 	"net/http"
 	"os"
+	"os/signal"
+	"syscall"
+	"time"
 
 	valid "github.com/bufbuild/protovalidate-go"
 	"github.com/davidyannick86/bufbuild/testbuf/interceptor"
 	protohello "github.com/davidyannick86/bufbuild/testbuf/protogen/hello/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
+	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"golang.org/x/sync/errgroup"
 
@@ -28,7 +28,7 @@ type server struct {
 	protohello.UnimplementedHelloServiceServer
 }
 
-func (s *server) SayHello(ctx context.Context, req *protohello.SayHelloRequest) (*protohello.SayHelloResponse, error) {
+func (s *server) SayHello(_ context.Context, req *protohello.SayHelloRequest) (*protohello.SayHelloResponse, error) {
 	response := &protohello.SayHelloResponse{
 		Message: fmt.Sprintf("Hello, %s aged : %d!", req.Name, req.GetAge()),
 	}
@@ -36,28 +36,28 @@ func (s *server) SayHello(ctx context.Context, req *protohello.SayHelloRequest) 
 }
 
 func (s *server) GreetManyTimes(req *protohello.GreetManyTimesRequest, stream grpc.ServerStreamingServer[protohello.GreetManyTimesResponse]) error {
-
 	validator, err := valid.New()
 	if err != nil {
-		return fmt.Errorf("failed to create validator: %v", err)
+		return fmt.Errorf("failed to create validator: %w", err)
 	}
 	log.Info().Msgf("Received request: %v", req)
 	if err := validator.Validate(req); err != nil {
-		if ve, ok := err.(*valid.ValidationError); ok {
+		var ve *valid.ValidationError
+		if errors.As(err, &ve) {
 			log.Info().Msgf("Validation violations: %v", ve.Error())
 		}
-		return fmt.Errorf("validation failed ➡️  %v", err)
+		return fmt.Errorf("validation failed ➡️  %w", err)
 	}
 
 	name := req.GetName()
 	result := fmt.Sprintf("Hello, %s!", name)
-	for i := 0; i < 10; i++ {
+	for i := range 10 {
 		response := &protohello.GreetManyTimesResponse{
 			Message: result,
 		}
 		if err := stream.Send(response); err != nil {
 			log.Error().Err(err).Msg("failed to send response")
-			return err
+			return fmt.Errorf("failed to send response: %w", err)
 		}
 		time.Sleep(1 * time.Second)
 		log.Info().Msgf("Sent response %d : %v", i+1, response)
@@ -71,12 +71,15 @@ func (s *server) LongGreet(stream grpc.ClientStreamingServer[protohello.LongGree
 	for {
 		req, err := stream.Recv()
 		if err != nil {
-			if err == io.EOF {
-				return stream.SendAndClose(&protohello.LongGreetResponse{
+			if errors.Is(err, io.EOF) {
+				if sendErr := stream.SendAndClose(&protohello.LongGreetResponse{
 					Message: result,
-				})
+				}); sendErr != nil {
+					return fmt.Errorf("failed to send and close: %w", err)
+				}
+				return nil
 			}
-			return err
+			return fmt.Errorf("failed to receive: %w", err)
 		}
 		log.Info().Msgf("Received request: %v", req)
 
@@ -92,8 +95,7 @@ var interruptSignals = []os.Signal{
 }
 
 func main() {
-
-	//log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stderr})
+	log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stderr})
 
 	ctx, cancel := signal.NotifyContext(
 		context.Background(),
@@ -122,7 +124,7 @@ func runHTTPGateway(
 	wg *errgroup.Group,
 ) {
 	grpcMux := runtime.NewServeMux()
-	err := protohello.RegisterHelloServiceHandlerServer(context.Background(), grpcMux, &server{})
+	err := protohello.RegisterHelloServiceHandlerServer(ctx, grpcMux, &server{})
 	if err != nil {
 		log.Fatal().Err(err).Msg("failed to register handler")
 	}
@@ -130,19 +132,19 @@ func runHTTPGateway(
 	mux.Handle("/", grpcMux)
 
 	httpServer := &http.Server{
-		Addr:    ":8080",
-		Handler: mux,
+		Addr:              ":8080",
+		Handler:           mux,
+		ReadHeaderTimeout: 10 * time.Second,
 	}
 
 	wg.Go(func() error {
 		log.Info().Msgf("HTTP Gateway server listening at %v", httpServer.Addr)
-		err := httpServer.ListenAndServe()
-		if err != nil {
+		if err := httpServer.ListenAndServe(); err != nil {
 			if errors.Is(err, http.ErrServerClosed) {
 				return nil
 			}
 			log.Error().Err(err).Msg("failed to serve")
-			return err
+			return fmt.Errorf("HTTP server error: %w", err)
 		}
 		return nil
 	})
@@ -152,7 +154,7 @@ func runHTTPGateway(
 		log.Info().Msg("Stopping HTTP Gateway server...")
 		if err := httpServer.Shutdown(ctx); err != nil {
 			log.Error().Err(err).Msg("failed to shutdown HTTP server")
-			return err
+			return fmt.Errorf("failed to shutdown HTTP server: %w", err)
 		}
 		log.Info().Msg("HTTP Gateway server stopped")
 		return nil
@@ -168,7 +170,7 @@ func runGrpcServer(
 	)
 	protohello.RegisterHelloServiceServer(grpcServer, &server{})
 
-	listener, err := net.Listen("tcp", ":50051")
+	listener, err := net.Listen("tcp", "localhost:50051")
 	if err != nil {
 		log.Fatal().Err(err).Msg("failed to listen")
 	}
@@ -183,7 +185,7 @@ func runGrpcServer(
 				return nil
 			}
 			log.Error().Err(err).Msg("failed to serve")
-			return err
+			return fmt.Errorf("GRPC server error: %w", err)
 		}
 		return nil
 	})
@@ -195,5 +197,4 @@ func runGrpcServer(
 		log.Info().Msg("GRPC server stopped")
 		return nil
 	})
-
 }
