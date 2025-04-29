@@ -30,5 +30,8 @@ jobs:
           go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
           echo "$HOME/go/bin" >> $GITHUB_PATH
 
+      - name: Copy golangci-lint config
+        run: cp .golangci.yaml $HOME/.golangci.yaml
+
       - name: Run lint task
-        run: task lint
+        run: golangci-lint run --config="$HOME/.golangci.yaml"
